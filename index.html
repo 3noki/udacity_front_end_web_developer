@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Matching Game</title>
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  
+    <div class="container">
+      
+  <div class="modal fade" id="winModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Congradulations you won</h4>
+        </div>
+        <div class="modal-body">
+          <p class="win"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="restart" data-dismiss="modal">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+   <div class="modal fade" id="loseModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">You lost</h4>
+        </div>
+        <div class="modal-body">
+          <p>You lost this game, try again.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="restart" data-dismiss="modal">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      
+        <header><h1>Matching Game</h1></header>
+        <br/>
+        <section class="score-panel">
+        	<ul class="stars">
+        		<li><i id="1st-star" class="fa fa-star"></i></li>
+        		<li><i id="2nd-star" class="fa fa-star"></i></li>
+        		<li><i id="3rd-star" class="fa fa-star"></i></li>
+        	</ul>
+        	<span class="moves">0</span> :clicks | time:
+          <span class="timer">0</span> :seconds
+          <div class="restart"><i class="fa fa-repeat"></i></div>
+        </section>
+   
+    
+      
+        <ul class="deck">
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+          <li class="card">
+            <i class="fa "></i>
+          </li>
+        </ul>
+
+    </div>
+
+    <script src="js/app.js"></script>
+
+  
+</body>
+</html>
