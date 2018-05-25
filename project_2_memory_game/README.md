@@ -27,4 +27,4 @@ Download/clone the project and open index.html in a web browser, you could also 
     
 ## Contributing
 
-For details, check out [../CONTRIBUTING.md](CONTRIBUTING.md).
+For details, check out [CONTRIBUTING.md](../CONTRIBUTING.md).
