@@ -3,12 +3,17 @@ body {
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center ;
+    justify-content: center;
     align-items: center;
     text-align: center;
     background-color: white;
     margin: 0 auto;
     position: relative;
+}
+
+header {
+  background-color: purple;
+  float:right;
 }
 
 h3 {
@@ -19,15 +24,15 @@ h3 {
   background-color: white;
 }
 button {
-  margin:0;
+  margin:2%;
   width:100px;
   height:60px;
 }
 
 
-.container {
+.sidecontainer {
   padding:1%;
-  margin:0%;
+  margin:0;
   width:100px;
   background-color: white;
 }

@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Frogger style arcade game</title>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="container">
-      <header>
+
+
+<div class="sidecontainer">
+      <div class="game">
         <button onclick="">New game</button>
         <h4>score: <span class="score">0</span></h4>
-        <h4>lives: <span class="lives">0</span></h4>
-      </header>
+        <h4>lives: <span class="lives">3</span></h4>
+      </div>
 
       <div class="buttoncontainer">
         <h3>select character</h3>
-        <button onclick="Player.prototyle.catgirl()">Cat girl</button>
-        <button onclick="Player.prototyle.horngirl()">Horn girl</button>
-        <button onclick="Player.prototyle.pinkgirl()">Pink girl</button>
-        <button onclick="Player.prototyle.boy()">Boy</button>
-        <button onclick="Player.prototyle.princessgirl()">Princess girl</button>
+        <button id="catgirlbutton">Cat girl</button>
+        <button id="horngirlbutton">Horn girl</button>
+        <button id="pinkgirlbutton">Pink girl</button>
+        <button id="boybutton">Boy</button>
+        <button id="princessgirlbutton">Princess girl</button>
       </div>
 </div>
 
