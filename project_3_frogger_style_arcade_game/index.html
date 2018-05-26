@@ -2,12 +2,30 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Effective JavaScript: Frogger</title>
+    <title>Frogger style arcade game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/engine.js"></script>
+<div class="container">
+      <header>
+        <button onclick="">New game</button>
+        <h4>score: <span class="score">0</span></h4>
+        <h4>lives: <span class="lives">0</span></h4>
+      </header>
+
+      <div class="buttoncontainer">
+        <h3>select character</h3>
+        <button onclick="Player.prototyle.catgirl()">Cat girl</button>
+        <button onclick="Player.prototyle.horngirl()">Horn girl</button>
+        <button onclick="Player.prototyle.pinkgirl()">Pink girl</button>
+        <button onclick="Player.prototyle.boy()">Boy</button>
+        <button onclick="Player.prototyle.princessgirl()">Princess girl</button>
+      </div>
+</div>
+
+<script src="js/resources.js"></script>
+<script src="js/app.js"></script>
+<script src="js/engine.js"></script>
+
 </body>
 </html>

@@ -1,3 +1,33 @@
 body {
+    margin:0;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center ;
+    align-items: center;
     text-align: center;
+    background-color: white;
+    margin: 0 auto;
+    position: relative;
+}
+
+h3 {
+  margin-bottom:0;
+}
+
+.buttoncontainer {
+  background-color: white;
+}
+button {
+  margin:0;
+  width:100px;
+  height:60px;
+}
+
+
+.container {
+  padding:1%;
+  margin:0%;
+  width:100px;
+  background-color: white;
 }
