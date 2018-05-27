@@ -1,23 +1,25 @@
 row = [51, 132, 213, 294, 375, 456];
 column = [0, 101, 202, 303, 404];
 
-bugrow = [0, 101, 202, 303, 404];
-bugcolumn = [51, 132, 213];
-var result = [51, 132, 213][Math.floor(Math.random() * 3)]
-
 //lives = $(".lives");
 score = $(".score");
 
-var bugr = bugrow[Math.floor(Math.random()*bugrow.length)];
-var bugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
-var newbugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
-
-Array.prototype.randomElement = function () {
-    return this[Math.floor(Math.random() * this.length)]
-}
-var myRandomElement = bugcolumn.randomElement()
-
+bugrow = [0, 101, 202, 303, 404];
+bugcolumn = [51, 132, 213];
+// var result = [51, 132, 213][Math.floor(Math.random() * 3)]
+// var bugr = bugrow[Math.floor(Math.random()*bugrow.length)];
+// var bugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
+// var newbugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
+// Array.prototype.randomElement = function () {
+//     return this[Math.floor(Math.random() * this.length)]
+// }
+// var myRandomElement = bugcolumn.randomElement()
 var random = (Math.floor(Math.random() * .3) * 13) + 101;
+
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -26,10 +28,17 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = Math.random() * 313;
-    this.y = result;
-    this.speed = random;
+    this.x = getRandomInt(0,404);
+    this.y = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
+    this.speed = getRandomInt(75,250);
 };
+
+Enemy.prototype.bugc = function () {
+    return bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
+}
+Enemy.prototype.bugr = function () {
+    return bugrow[Math.floor(Math.random()*bugrow.length)];
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -39,8 +48,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     if (this.x > 505) {
-      this.x = -101 - (Math.floor(Math.random()*10)*10+1);
-      this.y = bugc;
+      this.x = -101;
+      this.y =  this.bugc();
      }
 };
 
@@ -145,7 +154,9 @@ function newGame() {
 var bug1 = new Enemy();
 var bug2 = new Enemy();
 var bug3 = new Enemy();
-var allEnemies = [bug1, bug2, bug3];
+var bug4 = new Enemy();
+var bug5 = new Enemy();
+var allEnemies = [bug1, bug2, bug3, bug4, bug5];
 // var allEnemies = [];
 // for (var i = 0; i < enemyNum; i++) {
 //     allEnemies.push(new Enemy());
