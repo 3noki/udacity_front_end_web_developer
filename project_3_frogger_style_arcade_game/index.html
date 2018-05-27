@@ -5,32 +5,51 @@
     <title>Frogger style arcade game</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 
 <div class="sidecontainer">
       <div class="game">
-        <button onclick="">New game</button>
+        <button class="newgame" onclick="history.go(0);">New game</button>
         <h4>score: <span class="score">0</span></h4>
         <h4>lives: <span class="lives">3</span></h4>
       </div>
 
-      <div class="buttoncontainer">
+    <!--  <div class="buttoncontainer">
         <h3>select character</h3>
         <button id="catgirlbutton">Cat girl</button>
         <button id="horngirlbutton">Horn girl</button>
         <button id="pinkgirlbutton">Pink girl</button>
         <button id="boybutton">Boy</button>
         <button id="princessgirlbutton">Princess girl</button>
-      </div>
+      </div> -->
 </div>
 
 <script src="js/resources.js"></script>
 <script src="js/app.js"></script>
 <script src="js/engine.js"></script>
 
+   <div class="modal fade" id="loseModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="close" class="restart" onclick="history.go(0);" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">You lost!</h4>
+        </div>
+        <div class="modal-body">
+          <p>You died too many times, try again.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btn btn-default" class="restart" onclick="history.go(0);" data-dismiss="modal">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

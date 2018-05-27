@@ -31,8 +31,57 @@ button {
 
 
 .sidecontainer {
-  padding:1%;
-  margin:0;
+  margin:0;             
   width:100px;
   background-color: white;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    text-align: left;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.modal-title {
+  font-weight: bold;
+}
+
+/* The Close Button */
+#close {
+    color: #000000;
+    float: right;
+    width:40px;
+    height:40px;
+    font-size:100%;
+    font-weight: bold;
+
+}
+#close:hover,
+#close:focus {
+    color: #fbfbfb;
+    text-decoration: none;
+    cursor: pointer;
+}
+.restart {
+   float: right;
+   cursor: pointer;
+   border: 0px solid #fff;
+    width:80px;
+    height:40px;
 }
