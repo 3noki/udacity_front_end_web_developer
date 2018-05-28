@@ -3,7 +3,7 @@ column = [0, 101, 202, 303, 404];
 score = $(".score");
 bugrow = [0, 101, 202, 303, 404];
 bugcolumn = [51, 132, 213];
-lives=3;
+lives = 3;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -31,7 +31,7 @@ bugr() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
   update(dt) {
-    // YAny movement multiplied by the dt parameter
+    // Any movement multiplied by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
@@ -50,48 +50,7 @@ bugr() {
    };
 };
 
-class Gem {
-  constructor(color) {
-  this.sprite = 'images/Gem '+ color +'.png';
-  }
-}
-const greenGem = new Gem("Green");
-const blueGem = new Gem("Blue");
-const orangeGem = new Gem("Orange");
-
-//randomly spawn gems
-//after x time removes gems or stays untill picked up
-// after gems are removed, randomply spawn them again
-// increment score when gems are picked up
-//after x gems are picked up game is won
-
-
-
-
-
-
-// let hero = 'char-boy';
-// document.getElementById('boybutton').addEventListener('click', function () {
-//     hero = 'char-boy';
-// });
-//
-// document.getElementById('catgirlbutton').addEventListener('click', function () {
-//       hero = 'char-cat-girl';
-// });
-//
-// document.getElementById('horngirlbutton').addEventListener('click', function () {
-//     hero = 'char-horn-girl';
-// });
-// document.getElementById('princessgirlbutton').addEventListener('click', function () {
-//     hero = 'char-princess-girl';
-// });
-//
-// document.getElementById('pinkgirlbutton').addEventListener('click', function () {
-//     hero = 'char-pink-girl';
-// });
-
-// This player class requires an update(), render() and
-// a handleInput() method.
+// This player class requires an update(), render() and a handleInput() method
 class Player {
 constructor() {
   this.reset();
