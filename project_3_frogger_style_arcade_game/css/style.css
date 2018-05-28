@@ -23,19 +23,20 @@ h3 {
 .buttoncontainer {
   background-color: white;
 }
+
 button {
   margin:2%;
   width:100px;
   height:60px;
 }
 
-
 .sidecontainer {
-  margin:0;             
+  margin:0;
   width:100px;
   background-color: white;
 }
 
+/* Modal Content */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -49,7 +50,6 @@ button {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
 .modal-content {
     text-align: left;
     background-color: #fefefe;
@@ -72,12 +72,14 @@ button {
     font-weight: bold;
 
 }
+
 #close:hover,
 #close:focus {
     color: #fbfbfb;
     text-decoration: none;
     cursor: pointer;
 }
+
 .restart {
    float: right;
    cursor: pointer;
