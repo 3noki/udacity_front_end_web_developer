@@ -128,6 +128,18 @@ function checkCollision(playerl,playerr) {
     }
 };
 
+
+
+var seconds = 60;
+var incrementSeconds = setInterval(function(){
+  if (seconds >0 && player.y < 294 && player.y > 50){
+    seconds--;
+    $(".time").text(seconds);
+    if (lives===0){clearInterval(incrementSeconds);}
+  }
+  if (seconds===0) {timemessage();}
+}, 1000);
+
 //message for if you lost too many lives and lost
 function diedmessage() {
     document.getElementById('loseModal').style.display='block'
@@ -145,16 +157,6 @@ function timemessage() {
 
 function newGame() {
 };
-
-var seconds = 60;
-var incrementSeconds = setInterval(function(){
-  if (seconds >0){
-    seconds--;
-    $(".time").text(seconds);
-    if (lives===0){clearInterval(incrementSeconds);}
-  }
-  if (seconds===0) {timemessage();}
-}, 1000);
 
 // objects instantiated
 var bug1 = new Enemy();
