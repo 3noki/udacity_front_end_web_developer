@@ -109,15 +109,15 @@ Player.prototype.update = function(dt) {
   //console.log(this.leftLimit, this.rightLimit)
 };
 
-function checkCollision(playerx,playery) {
+function checkCollision(playerl,playerr) {
   //this.leftLimit = playerx - 50.5;
   //this.rightLimit = playerx + 50.5;
   for (var i = 0; i < 5; i++) {
             var thisEnemy = allEnemies[i];
-            if (thisEnemy.leftlimit > playerx && thisEnemy.rightLimit < playerx) {
+            if (thisEnemy.leftlimit > playerl && thisEnemy.rightLimit < playerr) {
               console.log("1");
             }
-            if (thisEnemy.leftlimit < this.leftlimit && thisEnemy.rightLimit > this.rightLimit) {
+            if (thisEnemy.leftlimit < playerl && thisEnemy.rightLimit > playerr) {
               console.log("2");
             }
             else {
