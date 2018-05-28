@@ -14,13 +14,10 @@ bugcolumn = [51, 132, 213];
 //     return this[Math.floor(Math.random() * this.length)]
 // }
 // var myRandomElement = bugcolumn.randomElement()
-var random = (Math.floor(Math.random() * .3) * 13) + 101;
-
-
+// var random = (Math.floor(Math.random() * .3) * 13) + 101;
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -30,6 +27,10 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
     this.x = getRandomInt(0,404);
     this.y = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
+    this.w = 101;
+    this.h = 171;
+    this.leftLimit = this.x - 50.5;
+    this.rightLimit = this.x + 50.5;
     this.speed = getRandomInt(75,250);
 };
 
@@ -56,6 +57,9 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    this.leftLimit = this.x - 50.5;
+    this.rightLimit = this.x + 50.5;
+    //console.log(this.leftLimit, this.rightLimit)
 };
 
 // Now write your own player class
@@ -94,9 +98,32 @@ Player.prototype.reset = function() {
   this.row = 4;
   this.x = column[this.column];
   this.y = row[this.row];
+  this.w = 101;
+  this.h = 171;
 }
 
 Player.prototype.update = function(dt) {
+  checkCollision(this.leftLimit, this.rightLimit);
+  this.leftLimit = this.x - 40.5;
+  this.rightLimit = this.x + 40.5;
+  //console.log(this.leftLimit, this.rightLimit)
+};
+
+function checkCollision(playerx,playery) {
+  //this.leftLimit = playerx - 50.5;
+  //this.rightLimit = playerx + 50.5;
+  for (var i = 0; i < 5; i++) {
+            var thisEnemy = allEnemies[i];
+            if (thisEnemy.leftlimit > playerx && thisEnemy.rightLimit < playerx) {
+              console.log("1");
+            }
+            if (thisEnemy.leftlimit < this.leftlimit && thisEnemy.rightLimit > this.rightLimit) {
+              console.log("2");
+            }
+            else {
+              //console.log('else');
+            }
+    }
 
 };
 
@@ -146,6 +173,8 @@ function newGame() {
 
 
 
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -157,10 +186,7 @@ var bug3 = new Enemy();
 var bug4 = new Enemy();
 var bug5 = new Enemy();
 var allEnemies = [bug1, bug2, bug3, bug4, bug5];
-// var allEnemies = [];
-// for (var i = 0; i < enemyNum; i++) {
-//     allEnemies.push(new Enemy());
-// };
+//var allEnemies = [bug1];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
