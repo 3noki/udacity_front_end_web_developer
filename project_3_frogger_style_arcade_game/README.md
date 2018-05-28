@@ -20,6 +20,7 @@ Open index.html in a browser
 
 
 **HOW TO PLAY**
+
 Use the arrow keys on the keyboard to move up, down, left, or right.
 Timer will start when you enter the lanes with bugs and only run while you are in those lanes.
 To win, survive 60 seconds in the lanes with the bugs!
