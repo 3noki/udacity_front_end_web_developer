@@ -177,12 +177,14 @@ Player.prototype.loseLife = function () {
 
 function diedmessage() {
     document.getElementById('loseModal').style.display='block'
+    document.querySelector('.modal-title').innerText='You lost!'
     document.querySelector('.modal-body').innerText='You died too many times, try again.'
     $(loseModal).modal('show');
 }
 function timemessage() {
     document.getElementById('loseModal').style.display='block'
-    document.querySelector('.modal-body').innerText='You ran out of time, try again.'
+    document.querySelector('.modal-title').innerText='Congradulations!'
+    document.querySelector('.modal-body').innerText='You won! Play again.'
     $(loseModal).modal('show');
 }
 
