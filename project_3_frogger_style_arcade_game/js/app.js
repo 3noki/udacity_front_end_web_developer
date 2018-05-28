@@ -8,7 +8,7 @@ lives = 3;
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+//enemy class function
 class Enemy {
     // Variables applied to each of our instances go here,
     constructor() {
@@ -21,10 +21,11 @@ class Enemy {
     this.rightLimit = this.x + 50.5;
     this.speed = getRandomInt(75,250);
 }
-
+//random selection of bugs column
 bugc() {
     return bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
 }
+//random selection of bugs row
 bugr() {
     return bugrow[Math.floor(Math.random()*bugrow.length)];
 }
@@ -58,6 +59,7 @@ constructor() {
   //this.sprite = 'images/' + hero + '.png';
 }
 
+//reset play, called later durring certain conditions
 reset() {
   this.column = 2;
   this.row = 4;
@@ -77,7 +79,7 @@ update(dt) {
 render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-
+//handles key input
 handleInput(keypress) {
     if (keypress === 'left' && this.x > 0) {
       this.x -= 101;
@@ -127,7 +129,7 @@ function checkCollision(playerl,playerr) {
        }
     }
 };
-
+//stops activity, called later for winning or losing
 function stop() {
   var thisEnemy = allEnemies[i];
   for (var i = 0; i < 5; i++) {
@@ -135,8 +137,7 @@ function stop() {
     thisEnemy.speed=0;}
 }
 
-
-
+//countdown timer
 var seconds = 60;
 var incrementSeconds = setInterval(function(){
   if (seconds >0 && player.y < 294 && player.y > 50){
@@ -163,9 +164,6 @@ function timemessage() {
     document.querySelector('.modal-body').innerText='You won! Play again.'
     $(loseModal).modal('show');
 }
-
-function newGame() {
-};
 
 // objects instantiated
 var bug1 = new Enemy();
