@@ -49,12 +49,29 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.leftLimit = Math.floor(this.x - 40.5);
-    this.rightLimit = Math.floor(this.x + 40.5);
-    this.upperLimit = Math.floor(this.y + 40.5);
-    this.lowerLimit = Math.floor(this.y - 40.5);
-    //console.log(this.leftLimit, this.rightLimit)
+    this.leftLimit = Math.floor(this.x - 30.5);
+    this.rightLimit = Math.floor(this.x + 30.5);
+    this.upperLimit = Math.floor(this.y + 30.5);
+    this.lowerLimit = Math.floor(this.y - 30.5);
 };
+
+class Gem {
+  constructor(color) {
+  this.sprite = 'images/Gem '+ color +'.png';
+  }
+}
+const greenGem = new Gem("Green");
+const blueGem = new Gem("Blue");
+const orangeGem = new Gem("Orange");
+
+//randomly spawn gems
+//after x time removes gems or stays untill picked up
+// after gems are removed, randomply spawn them again
+// increment score when gems are picked up
+//after x gems are picked up game is won
+
+
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -82,7 +99,6 @@ Enemy.prototype.render = function() {
 
 var Player = function() {
   this.reset();
-  //this.lives = "3";
   this.sprite = 'images/char-boy.png';
   //this.sprite = 'images/' + hero + '.png';
 }
@@ -98,24 +114,13 @@ Player.prototype.reset = function() {
 
 Player.prototype.update = function(dt) {
   checkCollision(this.leftLimit, this.rightLimit);
-  this.leftLimit = this.x - 50.5;
-  this.rightLimit = this.x + 50.5;
+  this.leftLimit = this.x - 30.5;
+  this.rightLimit = this.x + 30.5;
   this.upperLimit = this.y;
   this.lowerLimit = this.y;
-  //console.log(this.lowerLimit, this.upperLimit)
 };
 
 function checkCollision(playerl,playerr) {
-  //console.log(player.leftLimit, player.rightLimit)
-// var thisEnemy = bug1;
-//  if (
-//     thisEnemy.leftLimit < player.rightLimit &&
-//     thisEnemy.rightLimit > player.leftLimit &&
-//     thisEnemy.upperLimit > player.lowerLimit &&
-//     thisEnemy.lowerLimit < player.upperLimit) {
-//     console.log("collision");
-// }
-
   for (var i = 0; i < 5; i++) {
             var thisEnemy = allEnemies[i];
             if (
@@ -125,10 +130,9 @@ function checkCollision(playerl,playerr) {
                thisEnemy.lowerLimit < player.upperLimit) {
                console.log("collision");
                //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
-               Player.prototype.reset();
+               player.loseLife();
            }
-            else {
-              //console.log('else');
+            else {//console.log('else');
             }
     }
 
@@ -156,6 +160,7 @@ Player.prototype.handleInput = function(keypress) {
     }
 
 };
+
 var lives=3;
 Player.prototype.loseLife = function () {
   this.reset()
@@ -180,6 +185,17 @@ function newGame() {
 
 
 
+seconds = 60;
+function incrementSeconds() {
+  if (lives >0 )  {
+    seconds--;
+    $(".time").text(seconds);
+    return seconds;
+}
+//stop timer if game is over
+  else {gameWin();}
+}
+incrementSeconds.start();
 
 
 // Now instantiate your objects.
@@ -206,3 +222,8 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+//document.addEventListener('DOMContentLoaded', function() {incrementSeconds();});
+// $(document).ready(function () {
+// incrementSeconds()
+// });
