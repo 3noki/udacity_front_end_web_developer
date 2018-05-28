@@ -1,23 +1,15 @@
 row = [51, 132, 213, 294, 375, 456];
 column = [0, 101, 202, 303, 404];
 
-//lives = $(".lives");
 score = $(".score");
 
 bugrow = [0, 101, 202, 303, 404];
 bugcolumn = [51, 132, 213];
-// var result = [51, 132, 213][Math.floor(Math.random() * 3)]
-// var bugr = bugrow[Math.floor(Math.random()*bugrow.length)];
-// var bugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
-// var newbugc = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
-// Array.prototype.randomElement = function () {
-//     return this[Math.floor(Math.random() * this.length)]
-// }
-// var myRandomElement = bugcolumn.randomElement()
-// var random = (Math.floor(Math.random() * .3) * 13) + 101;
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -25,7 +17,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = getRandomInt(0,404);
+    this.x = Math.floor(getRandomInt(0,404));
     this.y = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
     this.w = 101;
     this.h = 171;
@@ -57,8 +49,10 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.leftLimit = this.x - 50.5;
-    this.rightLimit = this.x + 50.5;
+    this.leftLimit = Math.floor(this.x - 40.5);
+    this.rightLimit = Math.floor(this.x + 40.5);
+    this.upperLimit = Math.floor(this.y + 40.5);
+    this.lowerLimit = Math.floor(this.y - 40.5);
     //console.log(this.leftLimit, this.rightLimit)
 };
 
@@ -104,22 +98,35 @@ Player.prototype.reset = function() {
 
 Player.prototype.update = function(dt) {
   checkCollision(this.leftLimit, this.rightLimit);
-  this.leftLimit = this.x - 40.5;
-  this.rightLimit = this.x + 40.5;
-  //console.log(this.leftLimit, this.rightLimit)
+  this.leftLimit = this.x - 50.5;
+  this.rightLimit = this.x + 50.5;
+  this.upperLimit = this.y;
+  this.lowerLimit = this.y;
+  //console.log(this.lowerLimit, this.upperLimit)
 };
 
 function checkCollision(playerl,playerr) {
-  //this.leftLimit = playerx - 50.5;
-  //this.rightLimit = playerx + 50.5;
+  //console.log(player.leftLimit, player.rightLimit)
+// var thisEnemy = bug1;
+//  if (
+//     thisEnemy.leftLimit < player.rightLimit &&
+//     thisEnemy.rightLimit > player.leftLimit &&
+//     thisEnemy.upperLimit > player.lowerLimit &&
+//     thisEnemy.lowerLimit < player.upperLimit) {
+//     console.log("collision");
+// }
+
   for (var i = 0; i < 5; i++) {
             var thisEnemy = allEnemies[i];
-            if (thisEnemy.leftlimit > playerl && thisEnemy.rightLimit < playerr) {
-              console.log("1");
-            }
-            if (thisEnemy.leftlimit < playerl && thisEnemy.rightLimit > playerr) {
-              console.log("2");
-            }
+            if (
+               thisEnemy.leftLimit < player.rightLimit &&
+               thisEnemy.rightLimit > player.leftLimit &&
+               thisEnemy.upperLimit > player.lowerLimit &&
+               thisEnemy.lowerLimit < player.upperLimit) {
+               console.log("collision");
+               //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
+               Player.prototype.reset();
+           }
             else {
               //console.log('else');
             }
@@ -178,8 +185,6 @@ function newGame() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-// var enemyNum = 5;
-
 var bug1 = new Enemy();
 var bug2 = new Enemy();
 var bug3 = new Enemy();
