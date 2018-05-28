@@ -1,21 +1,17 @@
 row = [51, 132, 213, 294, 375, 456];
 column = [0, 101, 202, 303, 404];
-
 score = $(".score");
-
 bugrow = [0, 101, 202, 303, 404];
 bugcolumn = [51, 132, 213];
+lives=3;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Enemies our player must avoid
-var Enemy = function() {
+class Enemy {
     // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    constructor() {
     this.sprite = 'images/enemy-bug.png';
     this.x = Math.floor(getRandomInt(0,404));
     this.y = bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
@@ -24,19 +20,18 @@ var Enemy = function() {
     this.leftLimit = this.x - 50.5;
     this.rightLimit = this.x + 50.5;
     this.speed = getRandomInt(75,250);
-};
+}
 
-Enemy.prototype.bugc = function () {
+bugc() {
     return bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
 }
-Enemy.prototype.bugr = function () {
+bugr() {
     return bugrow[Math.floor(Math.random()*bugrow.length)];
 }
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
+  update(dt) {
+    // YAny movement multiplied by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
@@ -44,15 +39,15 @@ Enemy.prototype.update = function(dt) {
       this.x = -101;
       this.y =  this.bugc();
      }
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.leftLimit = Math.floor(this.x - 30.5);
-    this.rightLimit = Math.floor(this.x + 30.5);
-    this.upperLimit = Math.floor(this.y + 30.5);
-    this.lowerLimit = Math.floor(this.y - 30.5);
+   }
+   // Draw the enemy on the screen, required method for game
+   render() {
+       ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+       this.leftLimit = Math.floor(this.x - 30.5);
+       this.rightLimit = Math.floor(this.x + 30.5);
+       this.upperLimit = Math.floor(this.y + 30.5);
+       this.lowerLimit = Math.floor(this.y - 30.5);
+   };
 };
 
 class Gem {
@@ -73,9 +68,8 @@ const orangeGem = new Gem("Orange");
 
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+
+
 // let hero = 'char-boy';
 // document.getElementById('boybutton').addEventListener('click', function () {
 //     hero = 'char-boy';
@@ -96,14 +90,16 @@ const orangeGem = new Gem("Orange");
 //     hero = 'char-pink-girl';
 // });
 
-
-var Player = function() {
+// This player class requires an update(), render() and
+// a handleInput() method.
+class Player {
+constructor() {
   this.reset();
   this.sprite = 'images/char-boy.png';
   //this.sprite = 'images/' + hero + '.png';
 }
 
-Player.prototype.reset = function() {
+reset() {
   this.column = 2;
   this.row = 4;
   this.x = column[this.column];
@@ -112,37 +108,18 @@ Player.prototype.reset = function() {
   this.h = 171;
 }
 
-Player.prototype.update = function(dt) {
+update(dt) {
   checkCollision(this.leftLimit, this.rightLimit);
   this.leftLimit = this.x - 30.5;
   this.rightLimit = this.x + 30.5;
   this.upperLimit = this.y;
   this.lowerLimit = this.y;
-};
-
-function checkCollision(playerl,playerr) {
-  for (var i = 0; i < 5; i++) {
-            var thisEnemy = allEnemies[i];
-            if (
-               thisEnemy.leftLimit < player.rightLimit &&
-               thisEnemy.rightLimit > player.leftLimit &&
-               thisEnemy.upperLimit > player.lowerLimit &&
-               thisEnemy.lowerLimit < player.upperLimit) {
-               console.log("collision");
-               //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
-               player.loseLife();
-           }
-            else {//console.log('else');
-            }
-    }
-
-};
-
-Player.prototype.render = function() {
+}
+render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+}
 
-Player.prototype.handleInput = function(keypress) {
+handleInput(keypress) {
     if (keypress === 'left' && this.x > 0) {
       this.x -= 101;
     }
@@ -159,28 +136,47 @@ Player.prototype.handleInput = function(keypress) {
       this.loseLife();
     }
 
-};
+}
 
-var lives=3;
-Player.prototype.loseLife = function () {
+loseLife() {
   this.reset()
   if (lives >0) {
   lives -= 1;
   $(".lives").text(lives);
-  //console.log("dead, reset, and and if no lives left reset")
+  //if dead, reset, and and if no lives left reset
 }
     if (lives === 0) {
     diedmessage();
-    //console.log("if no lives left show losing message")
+    //if no lives left show losing message
   }
+}
+
 };
 
+function checkCollision(playerl,playerr) {
+  //check collision for each bug
+  for (var i = 0; i < 5; i++) {
+        var thisEnemy = allEnemies[i];
+        if (
+           thisEnemy.leftLimit < player.rightLimit &&
+           thisEnemy.rightLimit > player.leftLimit &&
+           thisEnemy.upperLimit > player.lowerLimit &&
+           thisEnemy.lowerLimit < player.upperLimit) {
+           console.log("collision");
+           //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
+           player.loseLife();
+       }
+    }
+};
+
+//message for if you lost too many lives and lost
 function diedmessage() {
     document.getElementById('loseModal').style.display='block'
     document.querySelector('.modal-title').innerText='You lost!'
     document.querySelector('.modal-body').innerText='You died too many times, try again.'
     $(loseModal).modal('show');
 }
+//message for winning if you did not die by the timer ran out
 function timemessage() {
     document.getElementById('loseModal').style.display='block'
     document.querySelector('.modal-title').innerText='Congradulations!'
@@ -191,46 +187,23 @@ function timemessage() {
 function newGame() {
 };
 
-
 var seconds = 60;
 var incrementSeconds = setInterval(function(){
   if (seconds >0){
     seconds--;
     $(".time").text(seconds);
-    if (lives===0){
-    clearInterval(incrementSeconds);
-  } }
-  if (seconds===0) {
-    timemessage();
+    if (lives===0){clearInterval(incrementSeconds);}
   }
-
+  if (seconds===0) {timemessage();}
 }, 1000);
 
-// seconds = 60;
-// setInterval(
-// function incrementSeconds() {
-//   if (lives>0)  {
-//     seconds--
-//     $(".time").text(seconds);
-//     return seconds;
-// }
-// //stop timer if game is over
-//   else {gameWin();}
-// }, 1000);
-
-//setInterval(incrementSeconds(),2000);
-
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// objects instantiated
 var bug1 = new Enemy();
 var bug2 = new Enemy();
 var bug3 = new Enemy();
 var bug4 = new Enemy();
 var bug5 = new Enemy();
 var allEnemies = [bug1, bug2, bug3, bug4, bug5];
-//var allEnemies = [bug1];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
@@ -245,8 +218,3 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
-//document.addEventListener('DOMContentLoaded', function() {incrementSeconds();});
-// $(document).ready(function () {
-// incrementSeconds()
-// });
