@@ -128,6 +128,13 @@ function checkCollision(playerl,playerr) {
     }
 };
 
+function stop() {
+  var thisEnemy = allEnemies[i];
+  for (var i = 0; i < 5; i++) {
+    var thisEnemy = allEnemies[i];
+    thisEnemy.speed=0;}
+}
+
 
 
 var seconds = 60;
@@ -142,6 +149,7 @@ var incrementSeconds = setInterval(function(){
 
 //message for if you lost too many lives and lost
 function diedmessage() {
+    stop();
     document.getElementById('loseModal').style.display='block'
     document.querySelector('.modal-title').innerText='You lost!'
     document.querySelector('.modal-body').innerText='You died too many times, try again.'
@@ -149,6 +157,7 @@ function diedmessage() {
 }
 //message for winning if you did not die by the timer ran out
 function timemessage() {
+    stop();
     document.getElementById('loseModal').style.display='block'
     document.querySelector('.modal-title').innerText='Congradulations!'
     document.querySelector('.modal-body').innerText='You won! Play again.'
