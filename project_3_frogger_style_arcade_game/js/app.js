@@ -170,13 +170,19 @@ Player.prototype.loseLife = function () {
   //console.log("dead, reset, and and if no lives left reset")
 }
     if (lives === 0) {
-    message();
+    diedmessage();
     //console.log("if no lives left show losing message")
   }
 };
 
-function message() {
+function diedmessage() {
     document.getElementById('loseModal').style.display='block'
+    document.querySelector('.modal-body').innerText='You died too many times, try again.'
+    $(loseModal).modal('show');
+}
+function timemessage() {
+    document.getElementById('loseModal').style.display='block'
+    document.querySelector('.modal-body').innerText='You ran out of time, try again.'
     $(loseModal).modal('show');
 }
 
@@ -192,6 +198,9 @@ var incrementSeconds = setInterval(function(){
     if (lives===0){
     clearInterval(incrementSeconds);
   } }
+  if (seconds===0) {
+    timemessage();
+  }
 
 }, 1000);
 
