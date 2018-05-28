@@ -17,15 +17,15 @@ The project is licensed under the MIT license.(https://github.com/3noki/udacity_
 
 #### INSTRUCUTIONS
 
-Download or git clone the project
+Download/git clone this master project in the folder above or download all files/folders for this project
 
-Open index.html in a browser
+Open the downloaded folder and open index.html in a browser
 
 
 #### HOW TO PLAY
 
 Use the arrow keys on the keyboard to move up, down, left, or right.
 
-Timer will start when you enter the lanes with bugs and only run while you are in those lanes.
+Timer will start when you enter the rocky road with bugs and it will only run while you are in those lanes.
 
 To win, survive 60 seconds in the lanes with the bugs!
