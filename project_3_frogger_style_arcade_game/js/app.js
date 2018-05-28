@@ -184,18 +184,30 @@ function newGame() {
 };
 
 
-
-seconds = 60;
-function incrementSeconds() {
-  if (lives >0 )  {
+var seconds = 60;
+var incrementSeconds = setInterval(function(){
+  if (seconds >0){
     seconds--;
     $(".time").text(seconds);
-    return seconds;
-}
-//stop timer if game is over
-  else {gameWin();}
-}
-incrementSeconds.start();
+    if (lives===0){
+    clearInterval(incrementSeconds);
+  } }
+
+}, 1000);
+
+// seconds = 60;
+// setInterval(
+// function incrementSeconds() {
+//   if (lives>0)  {
+//     seconds--
+//     $(".time").text(seconds);
+//     return seconds;
+// }
+// //stop timer if game is over
+//   else {gameWin();}
+// }, 1000);
+
+//setInterval(incrementSeconds(),2000);
 
 
 // Now instantiate your objects.
