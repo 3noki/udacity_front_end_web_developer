@@ -68,19 +68,12 @@ reset() {
 }
 
 update(dt) {
-  //this.checkCollision(this.leftLimit, this.rightLimit);
+  this.checkCollision(this.leftLimit, this.rightLimit);
   this.leftLimit = this.x - 30.5;
   this.rightLimit = this.x + 30.5;
   this.upperLimit = this.y;
   this.lowerLimit = this.y;
-
-  var interval = setInterval(this.checkCollision(this.leftLimit, this.rightLimit), 1000);
-  setTimeout(function() {
-      clearInterval(interval);
-  }, 2000);
-
 }
-
 
 
 render() {
@@ -106,7 +99,6 @@ handleInput(keypress) {
 
 }
 
-
 checkCollision(playerl,playerr) {
   //check collision for each bug
   for (var i = 0; i < 5; i++) {
@@ -117,14 +109,14 @@ checkCollision(playerl,playerr) {
             thisEnemy.upperLimit > player.lowerLimit &&
             thisEnemy.lowerLimit < player.upperLimit &&
             dead==false) {
-
+            this.reset();
             console.log("collision");
             dead=true; // dying is true, so we wont end up in this block again
-            setTimeout(function(){
-                dead=false; //after 500 milliseconds we set dying to false so our player has the ability to die again!
-            },500);
+              setTimeout(function(){
+                  dead=false; //after 500 milliseconds we set dying to false so our player has the ability to die again!
+              },500);
             player.loseLife();
-       }
+            }
     }
 }
 
