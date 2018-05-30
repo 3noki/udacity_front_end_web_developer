@@ -49,8 +49,8 @@ bugr() {
    // Draw the enemy on the screen, required method for game
    render() {
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-   };
-};
+   }
+}
 
 // This player class requires an update(), render() and a handleInput() method
 class Player {
@@ -77,7 +77,7 @@ update(dt) {
 
   var interval = setInterval(this.checkCollision(this.leftLimit, this.rightLimit), 1000);
   setTimeout(function() {
-      clearInterval(interval)
+      clearInterval(interval);
   }, 2000);
 
 }
@@ -127,10 +127,10 @@ checkCollision(playerl,playerr) {
             player.loseLife();
        }
     }
-};
+}
 
 loseLife() {
-  this.reset()
+  this.reset;
   if (lives >0) {
   lives -= 1;
   $(".lives").text(lives);
@@ -142,7 +142,7 @@ loseLife() {
   }
 }
 
-};
+}
 
 //stops activity, called later for winning or losing
 function stop() {
@@ -165,17 +165,17 @@ var incrementSeconds = setInterval(function(){
 //message for if you lost too many lives and lost
 function diedmessage() {
     stop();
-    document.getElementById('loseModal').style.display='block'
-    document.querySelector('.modal-title').innerText='You lost!'
-    document.querySelector('.modal-body').innerText='You died too many times, try again.'
+    document.getElementById('loseModal').style.display='block';
+    document.querySelector('.modal-title').innerText='You lost!';
+    document.querySelector('.modal-body').innerText='You died too many times, try again.';
     $(loseModal).modal('show');
 }
 //message for winning if you did not die by the timer ran out
 function timemessage() {
     stop();
-    document.getElementById('loseModal').style.display='block'
-    document.querySelector('.modal-title').innerText='Congradulations!'
-    document.querySelector('.modal-body').innerText='You won! Play again.'
+    document.getElementById('loseModal').style.display='block';
+    document.querySelector('.modal-title').innerText='Congradulations!';
+    document.querySelector('.modal-body').innerText='You won! Play again.';
     $(loseModal).modal('show');
 }
 
