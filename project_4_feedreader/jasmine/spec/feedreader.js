@@ -33,8 +33,8 @@ $(function() {
     */
     it('urls are not empty', function() {
       allFeeds.forEach(function(feed){
-      expect(feed.url).toBeDefined();
-      expect(feed.url.length).not.toBe(0);
+        expect(feed.url).toBeDefined();
+        expect(feed.url.length).not.toBe(0);
       });
     });
 
@@ -50,6 +50,27 @@ $(function() {
     });
 
   });
+
+
+  // describe("long asynchronous specs", function() {
+  //
+  //     var originalTimeout;
+  //
+  //     beforeEach(function() {
+  //         originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+  //         jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+  //     });
+  //
+  //     it("takes a long time", function(done) {
+  //         setTimeout(function() {
+  //             done();
+  //         }, 9000);
+  //     });
+  //
+  //     afterEach(function() {
+  //         jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+  //     });
+  // });
 
 
   /* TODO: Write a new test suite named "The menu" */
@@ -98,18 +119,31 @@ $(function() {
   * Remember, loadFeed() is asynchronous so this test will require
   * the use of Jasmine's beforeEach and asynchronous done() function.
   */
-    it('is loaded', function() {
-      expect($('.entry').length).toBeGreaterThan(0);
-      expect($('.feed').length).toBeGreaterThan(0);
+  let entry = $('.entry');
+  let feed = $('.feed');
+  let initialComplete = false;
+
+    it('is loaded', function(cb) {
+      expect((entry, feed).length).toBeGreaterThan(0);
+          var self = this;
+          setTimeout(function() {
+          self.initialComplete = true;
+          if (cb) {
+              return cb();
+          }
+          }, 3);
+
     });
   });
 
   /* TODO: Write a new test suite named "New Feed Selection" */
   describe('New Feed Selection', function() {
+  let feed = $('.feed');
+  let initialComplete = false;
 
       beforeEach(function(done) {
         loadFeed(0, function() {
-          loadedfeed = $('.feed').innerHTML();
+          loadedfeed = ($('.feed').innerHTML);
           done();
         });
       });
@@ -118,10 +152,18 @@ $(function() {
     * by the loadFeed function that the content actually changes.
     * Remember, loadFeed() is asynchronous.
     */
-    it('LoadFeed content changes', function() {
+    it('LoadFeed content changes', function(cb) {
       loadFeed(1, function() {
-        reloadedFeed = $('.feed').innerHTML();
+        reloadedFeed = ($('.feed').innerHTML);
         expect(reloadedFeed).not.toBe(loadedFeed);
+        var self = this;
+        setTimeout(function() {
+        self.initialComplete = true;
+        if (cb) {
+            return cb();
+        }
+        }, 3);
+
       });
     });
   });

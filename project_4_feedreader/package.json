@@ -1,0 +1,22 @@
+{
+  "name": "project_4_feedreader",
+  "version": "1.0.0",
+  "description": "feed reader/jasmine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3noki/udacity_front_end_web_developer.git"
+  },
+  "author": "3noki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3noki/udacity_front_end_web_developer/issues"
+  },
+  "homepage": "https://github.com/3noki/udacity_front_end_web_developer#readme",
+  "dependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
