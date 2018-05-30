@@ -16,6 +16,7 @@ The project is licensed under the [MIT license](https://github.com/3noki/udacity
 #### INSTRUCUTIONS
 
 Download/git clone this master project in the folder above or download all files/folders for this project
+
 You can also open the [live page](https://3noki.github.io/udacity_front_end_web_developer/project_3_frogger_style_arcade_game/index.html)
 
 Open the downloaded folder and open index.html in a browser
