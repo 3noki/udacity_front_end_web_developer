@@ -1,9 +1,9 @@
-row = [51, 132, 213, 294, 375, 456];
-column = [0, 101, 202, 303, 404];
-score = $(".score");
-bugrow = [0, 101, 202, 303, 404];
-bugcolumn = [51, 132, 213];
-lives = 3;
+let row = [51, 132, 213, 294, 375, 456];
+let column = [0, 101, 202, 303, 404];
+let score = $(".score");
+let bugrow = [0, 101, 202, 303, 404];
+let bugcolumn = [51, 132, 213];
+let lives = 3;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,7 +20,7 @@ class Enemy {
     this.leftLimit = this.x - 50.5;
     this.rightLimit = this.x + 50.5;
     this.speed = getRandomInt(75,250);
-}
+  }
 //random selection of bugs column
 bugc() {
     return bugcolumn[Math.floor(Math.random()*bugcolumn.length)];
@@ -40,14 +40,14 @@ bugr() {
       this.x = -101;
       this.y =  this.bugc();
      }
+     this.leftLimit = Math.floor(this.x - 30.5);
+     this.rightLimit = Math.floor(this.x + 30.5);
+     this.upperLimit = Math.floor(this.y + 30.5);
+     this.lowerLimit = Math.floor(this.y - 30.5);
    }
    // Draw the enemy on the screen, required method for game
    render() {
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-       this.leftLimit = Math.floor(this.x - 30.5);
-       this.rightLimit = Math.floor(this.x + 30.5);
-       this.upperLimit = Math.floor(this.y + 30.5);
-       this.lowerLimit = Math.floor(this.y - 30.5);
    };
 };
 
@@ -65,12 +65,10 @@ reset() {
   this.row = 4;
   this.x = column[this.column];
   this.y = row[this.row];
-  this.w = 101;
-  this.h = 171;
 }
 
 update(dt) {
-  checkCollision(this.leftLimit, this.rightLimit);
+  this.checkCollision(this.leftLimit, this.rightLimit);
   this.leftLimit = this.x - 30.5;
   this.rightLimit = this.x + 30.5;
   this.upperLimit = this.y;
@@ -99,6 +97,22 @@ handleInput(keypress) {
 
 }
 
+checkCollision(playerl,playerr) {
+  //check collision for each bug
+  for (var i = 0; i < 5; i++) {
+        var thisEnemy = allEnemies[i];
+        if (
+           thisEnemy.leftLimit < player.rightLimit &&
+           thisEnemy.rightLimit > player.leftLimit &&
+           thisEnemy.upperLimit > player.lowerLimit &&
+           thisEnemy.lowerLimit < player.upperLimit) {
+           console.log("collision");
+           //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
+           player.loseLife();
+       }
+    }
+};
+
 loseLife() {
   this.reset()
   if (lives >0) {
@@ -114,21 +128,6 @@ loseLife() {
 
 };
 
-function checkCollision(playerl,playerr) {
-  //check collision for each bug
-  for (var i = 0; i < 5; i++) {
-        var thisEnemy = allEnemies[i];
-        if (
-           thisEnemy.leftLimit < player.rightLimit &&
-           thisEnemy.rightLimit > player.leftLimit &&
-           thisEnemy.upperLimit > player.lowerLimit &&
-           thisEnemy.lowerLimit < player.upperLimit) {
-           console.log("collision");
-           //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
-           player.loseLife();
-       }
-    }
-};
 //stops activity, called later for winning or losing
 function stop() {
   var thisEnemy = allEnemies[i];
