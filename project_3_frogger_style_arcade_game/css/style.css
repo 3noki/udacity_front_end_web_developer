@@ -63,7 +63,7 @@ button {
 }
 
 /* The Close Button */
-.close {
+#close {
     color: #000000;
     float: right;
     width:40px;
@@ -73,8 +73,8 @@ button {
 
 }
 
-.close:hover,
-.close:focus {
+#close:hover,
+#close:focus {
     color: #fbfbfb;
     text-decoration: none;
     cursor: pointer;
