@@ -1,6 +1,5 @@
 let row = [51, 132, 213, 294, 375, 456];
 let column = [0, 101, 202, 303, 404];
-let score = $(".score");
 let bugrow = [0, 101, 202, 303, 404];
 let bugcolumn = [51, 132, 213];
 let lives = 3;
