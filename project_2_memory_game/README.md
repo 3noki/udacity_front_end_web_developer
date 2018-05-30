@@ -14,6 +14,7 @@ This was completed as part of the Udacity Front End Web Developer course, feel f
 Match cards in less time with less moves.
 How to Play
 
+[Live page](https://3noki.github.io/udacity_front_end_web_developer/project_2_memory_game/index.html)
 Download/clone the project and open index.html in a web browser, you could also copy the index.html, app.css, and app,js content to codepen.io and test. Like https://codepen.io/3noki/pen/xjyErQ
 
 ## Instructions
