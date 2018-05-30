@@ -1,6 +1,5 @@
 let row = [51, 132, 213, 294, 375, 456];
 let column = [0, 101, 202, 303, 404];
-let score = $(".score");
 let bugrow = [0, 101, 202, 303, 404];
 let bugcolumn = [51, 132, 213];
 let lives = 3;
@@ -48,8 +47,8 @@ bugr() {
    // Draw the enemy on the screen, required method for game
    render() {
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-   };
-};
+   }
+}
 
 // This player class requires an update(), render() and a handleInput() method
 class Player {
@@ -111,10 +110,10 @@ checkCollision(playerl,playerr) {
            player.loseLife();
        }
     }
-};
+}
 
 loseLife() {
-  this.reset()
+  this.reset();
   if (lives >0) {
   lives -= 1;
   $(".lives").text(lives);
@@ -126,11 +125,10 @@ loseLife() {
   }
 }
 
-};
+}
 
 //stops activity, called later for winning or losing
 function stop() {
-  var thisEnemy = allEnemies[i];
   for (var i = 0; i < 5; i++) {
     var thisEnemy = allEnemies[i];
     thisEnemy.speed=0;}
@@ -150,17 +148,17 @@ var incrementSeconds = setInterval(function(){
 //message for if you lost too many lives and lost
 function diedmessage() {
     stop();
-    document.getElementById('loseModal').style.display='block'
-    document.querySelector('.modal-title').innerText='You lost!'
-    document.querySelector('.modal-body').innerText='You died too many times, try again.'
+    document.getElementById('loseModal').style.display='block';
+    document.querySelector('.modal-title').innerText='You lost!';
+    document.querySelector('.modal-body').innerText='You died too many times, try again.';
     $(loseModal).modal('show');
 }
 //message for winning if you did not die by the timer ran out
 function timemessage() {
     stop();
-    document.getElementById('loseModal').style.display='block'
-    document.querySelector('.modal-title').innerText='Congradulations!'
-    document.querySelector('.modal-body').innerText='You won! Play again.'
+    document.getElementById('loseModal').style.display='block';
+    document.querySelector('.modal-title').innerText='Congradulations!';
+    document.querySelector('.modal-body').innerText='You won! Play again.';
     $(loseModal).modal('show');
 }
 
