@@ -1,8 +1,10 @@
 let row = [51, 132, 213, 294, 375, 456];
 let column = [0, 101, 202, 303, 404];
+let score = $(".score");
 let bugrow = [0, 101, 202, 303, 404];
 let bugcolumn = [51, 132, 213];
 let lives = 3;
+let dead = false;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -47,8 +49,8 @@ bugr() {
    // Draw the enemy on the screen, required method for game
    render() {
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-   }
-}
+   };
+};
 
 // This player class requires an update(), render() and a handleInput() method
 class Player {
@@ -67,12 +69,21 @@ reset() {
 }
 
 update(dt) {
-  this.checkCollision(this.leftLimit, this.rightLimit);
+  //this.checkCollision(this.leftLimit, this.rightLimit);
   this.leftLimit = this.x - 30.5;
   this.rightLimit = this.x + 30.5;
   this.upperLimit = this.y;
   this.lowerLimit = this.y;
+
+  var interval = setInterval(this.checkCollision(this.leftLimit, this.rightLimit), 1000);
+  setTimeout(function() {
+      clearInterval(interval)
+  }, 2000);
+
 }
+
+
+
 render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
@@ -96,24 +107,30 @@ handleInput(keypress) {
 
 }
 
+
 checkCollision(playerl,playerr) {
   //check collision for each bug
   for (var i = 0; i < 5; i++) {
         var thisEnemy = allEnemies[i];
         if (
-           thisEnemy.leftLimit < player.rightLimit &&
-           thisEnemy.rightLimit > player.leftLimit &&
-           thisEnemy.upperLimit > player.lowerLimit &&
-           thisEnemy.lowerLimit < player.upperLimit) {
-           console.log("collision");
-           //console.log(player.lowerLimit, player.upperLimit, thisEnemy.lowerLimit, thisEnemy.upperLimit)
-           player.loseLife();
+            thisEnemy.leftLimit < player.rightLimit &&
+            thisEnemy.rightLimit > player.leftLimit &&
+            thisEnemy.upperLimit > player.lowerLimit &&
+            thisEnemy.lowerLimit < player.upperLimit &&
+            dead==false) {
+
+            console.log("collision");
+            dead=true; // dying is true, so we wont end up in this block again
+            setTimeout(function(){
+                dead=false; //after 500 milliseconds we set dying to false so our player has the ability to die again!
+            },500);
+            player.loseLife();
        }
     }
-}
+};
 
 loseLife() {
-  this.reset();
+  this.reset()
   if (lives >0) {
   lives -= 1;
   $(".lives").text(lives);
@@ -125,7 +142,7 @@ loseLife() {
   }
 }
 
-}
+};
 
 //stops activity, called later for winning or losing
 function stop() {
@@ -148,17 +165,17 @@ var incrementSeconds = setInterval(function(){
 //message for if you lost too many lives and lost
 function diedmessage() {
     stop();
-    document.getElementById('loseModal').style.display='block';
-    document.querySelector('.modal-title').innerText='You lost!';
-    document.querySelector('.modal-body').innerText='You died too many times, try again.';
+    document.getElementById('loseModal').style.display='block'
+    document.querySelector('.modal-title').innerText='You lost!'
+    document.querySelector('.modal-body').innerText='You died too many times, try again.'
     $(loseModal).modal('show');
 }
 //message for winning if you did not die by the timer ran out
 function timemessage() {
     stop();
-    document.getElementById('loseModal').style.display='block';
-    document.querySelector('.modal-title').innerText='Congradulations!';
-    document.querySelector('.modal-body').innerText='You won! Play again.';
+    document.getElementById('loseModal').style.display='block'
+    document.querySelector('.modal-title').innerText='Congradulations!'
+    document.querySelector('.modal-body').innerText='You won! Play again.'
     $(loseModal).modal('show');
 }
 
