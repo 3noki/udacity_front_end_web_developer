@@ -133,14 +133,14 @@ $(function() {
 
   function asyncLoad(i) {
 		describe('feed', function() {
-			let currentTitle;
-			let previousTitle;
+      let currentTitle;
+      let previousTitle;
       let currentContent;
       let previousContent;
 
-			beforeEach(function(done) {
-				loadFeed(i, done);
-			});
+	     beforeEach(function(done) {
+         loadFeed(i, done);
+       });
 
 			it('changes title and content on load', function() {
 				currentTitle = $('.header-title').text();
