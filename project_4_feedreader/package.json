@@ -18,5 +18,12 @@
   "homepage": "https://github.com/3noki/udacity_front_end_web_developer#readme",
   "dependencies": {
     "jasmine-node": "^1.14.5"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-less": "^3.5.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4"
   }
 }

@@ -51,28 +51,6 @@ $(function() {
 
   });
 
-
-  // describe("long asynchronous specs", function() {
-  //
-  //     var originalTimeout;
-  //
-  //     beforeEach(function() {
-  //         originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-  //         jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-  //     });
-  //
-  //     it("takes a long time", function(done) {
-  //         setTimeout(function() {
-  //             done();
-  //         }, 9000);
-  //     });
-  //
-  //     afterEach(function() {
-  //         jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-  //     });
-  // });
-
-
   /* TODO: Write a new test suite named "The menu" */
   describe('The menu', function() {
 
@@ -120,11 +98,10 @@ $(function() {
   * the use of Jasmine's beforeEach and asynchronous done() function.
   */
   let entry = $('.entry');
-  let feed = $('.feed');
   let initialComplete = false;
 
-    it('is loaded', function(cb) {
-      expect((entry, feed).length).toBeGreaterThan(0);
+    it('are loaded', function(cb) {
+      expect($('.entry').length).toBeGreaterThan(0);
           var self = this;
           setTimeout(function() {
           self.initialComplete = true;
@@ -138,34 +115,40 @@ $(function() {
 
   /* TODO: Write a new test suite named "New Feed Selection" */
   describe('New Feed Selection', function() {
-  let feed = $('.feed');
-  let initialComplete = false;
-
-      beforeEach(function(done) {
-        loadFeed(0, function() {
-          loadedfeed = ($('.feed').innerHTML);
-          done();
-        });
-      });
 
     /* TODO: Write a test that ensures when a new feed is loaded
     * by the loadFeed function that the content actually changes.
     * Remember, loadFeed() is asynchronous.
     */
-    it('LoadFeed content changes', function(cb) {
-      loadFeed(1, function() {
-        reloadedFeed = ($('.feed').innerHTML);
-        expect(reloadedFeed).not.toBe(loadedFeed);
-        var self = this;
-        setTimeout(function() {
-        self.initialComplete = true;
-        if (cb) {
-            return cb();
-        }
-        }, 3);
 
-      });
-    });
-  });
+  let title = [];
+  for (var i =0; i < allFeeds.length; i++) {
+    asyncLoad(i);
+  }
+
+  function asyncLoad(i) {
+		describe('feed ' + title[i], function() {
+			let currentTitle;
+			let previousTitle;
+      let currentContent;
+      let previousContent;
+			beforeEach(function(done) {
+				loadFeed(i, done);
+			});
+
+			it('changes title and content on load', function() {
+				currentTitle = $('.header-title').text();
+        currentContent = $('.feed').text;
+        title.push($('.header-title').text());
+        console.log(title[i]);
+        expect(previousContent).not.toMatch(currentContent);
+				expect(previousTitle).not.toMatch(currentTitle);
+				previousTitle = currentTitle;
+        previousContent = currentContent;
+			});
+		});
+	 }
+
+ });
 
 }());
