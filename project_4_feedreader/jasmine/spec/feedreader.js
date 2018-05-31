@@ -75,6 +75,7 @@ $(function() {
       //declare body indepentent of last test
       var body = $('body');
       //declare the clickable icon vaiable
+      expect(body.hasClass("menu-hidden")).toBe(true);
       var icon = $('.icon-list');
       //on click, menu appears / class menu-hidden appears
       icon.click();
