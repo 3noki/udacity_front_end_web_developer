@@ -124,15 +124,20 @@ $(function() {
 
   let title = [];
   for (var i =0; i < allFeeds.length; i++) {
-    asyncLoad(i);
+    let self = true;
+    setInterval(function() {
+      asyncLoad(i);
+      self.initialComplete = true;
+    }, 3000);
   }
 
   function asyncLoad(i) {
-		describe('feed ' + title[i], function() {
+		describe('feed', function() {
 			let currentTitle;
 			let previousTitle;
       let currentContent;
       let previousContent;
+
 			beforeEach(function(done) {
 				loadFeed(i, done);
 			});
