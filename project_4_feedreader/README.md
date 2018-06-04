@@ -1,9 +1,13 @@
 # Project Overview
 
-In this project I take a web-based application that reads RSS feed and write out tests using [Jasmine](http://jasmine.github.io/) It may be best to download or clone this as the async tests were running well on a local machine, but when served from github or the [live page](https://3noki.github.io/udacity_front_end_web_developer/project_4_feedreader/index.html) were not running well.
+In this project a web-based application that reads RSS feed is tested using [Jasmine](http://jasmine.github.io/). 
+
+# Instructions
+
+It is best to download or clone this and open the index.html file in a browser, as the async tests were running well on a local machine, but when served from github or the [live page](https://3noki.github.io/udacity_front_end_web_developer/project_4_feedreader/index.html) were running inconsistiently.
 
 
-# Steps complted in this project
+# Project steps
 
 Review the Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/projects/3442558598/rubric)
 
