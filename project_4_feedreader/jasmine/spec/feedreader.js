@@ -44,8 +44,8 @@ $(function() {
   */
     it('names are defined and not empty', function() {
       allFeeds.forEach(function(feed){
-      expect(feed.name).toBeDefined();
-      expect(feed.name.length).not.toBe(0);
+        expect(feed.name).toBeDefined();
+        expect(feed.name.length).not.toBe(0);
       });
     });
 
@@ -98,19 +98,10 @@ $(function() {
   * Remember, loadFeed() is asynchronous so this test will require
   * the use of Jasmine's beforeEach and asynchronous done() function.
   */
-  let entry = $('.entry');
-  let initialComplete = false;
+    let entry = $('.entry');
 
-    it('are loaded', function(cb) {
+    it('are loaded', function() {
       expect($('.entry').length).toBeGreaterThan(0);
-          var self = this;
-          setTimeout(function() {
-          self.initialComplete = true;
-          if (cb) {
-              return cb();
-          }
-          }, 3);
-
     });
   });
 
@@ -122,39 +113,37 @@ $(function() {
     * Remember, loadFeed() is asynchronous.
     */
 
-  let title = [];
-  for (var i =0; i < allFeeds.length; i++) {
-    let self = true;
-    setInterval(function() {
-      asyncLoad(i);
-      self.initialComplete = true;
-    }, 3000);
-  }
+    let title = [];
+    for (var i = 0; i < allFeeds.length; i++) {
+        asyncLoad(i);
+        let j = i + 1;
+    }
 
-  function asyncLoad(i) {
-		describe('feed', function() {
-      let currentTitle;
-      let previousTitle;
-      let currentContent;
-      let previousContent;
+    function asyncLoad(i) {
+  		describe('feed', function() {
+        let priorFeed;
+        let latterFeed;
 
-	     beforeEach(function(done) {
-         loadFeed(i, done);
-       });
+  	     beforeEach(function(done) {
+           loadFeed(i, function(){
+             priorFeed = $('.header-title').text();
+             loadFeed(j, function(){
+            latterFeed = $('.header-title').text();
+             });
+           });
+         });
 
-			it('changes title and content on load', function() {
-				currentTitle = $('.header-title').text();
-        currentContent = $('.feed').text;
-        title.push($('.header-title').text());
-        console.log(title[i]);
-        expect(previousContent).not.toMatch(currentContent);
-				expect(previousTitle).not.toMatch(currentTitle);
-				previousTitle = currentTitle;
-        previousContent = currentContent;
-			});
-		});
-	 }
+  			it('changes title and content on load', function() {
+          expect(priorFeed).not.toBe(latterFeed);
 
- });
+  			});
+  		});
+  	 }
+
+        afterEach(function(done) {
+
+        });
+
+   });
 
 }());
