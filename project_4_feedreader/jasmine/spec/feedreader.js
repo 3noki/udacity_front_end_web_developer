@@ -120,7 +120,7 @@ $(function() {
     }
 
     function asyncLoad(i) {
-  		describe('feed', function() {
+      describe('feed', function() {
         let priorFeed;
         let latterFeed;
 
@@ -128,21 +128,16 @@ $(function() {
            loadFeed(i, function(){
              priorFeed = $('.header-title').text();
              loadFeed(j, function(){
-            latterFeed = $('.header-title').text();
+               latterFeed = $('.header-title').text();
              });
            });
          });
 
-  			it('changes title and content on load', function() {
-          expect(priorFeed).not.toBe(latterFeed);
-
-  			});
-  		});
-  	 }
-
-        afterEach(function(done) {
-
-        });
+         it('changes title and content on load', function() {
+           expect(priorFeed).not.toBe(latterFeed);
+         });
+       });
+     }
 
    });
 
