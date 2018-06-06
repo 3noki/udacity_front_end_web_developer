@@ -98,10 +98,10 @@ $(function() {
   * Remember, loadFeed() is asynchronous so this test will require
   * the use of Jasmine's beforeEach and asynchronous done() function.
   */
-    let entry = $('.entry');
-
-    it('are loaded', function() {
-      expect($('.entry').length).toBeGreaterThan(0);
+    it('are loaded', function(done) {
+      let entry = $('.feed .entry').length;
+      expect(entry).toBeGreaterThan(0);
+      done();
     });
   });
 
@@ -118,11 +118,13 @@ $(function() {
         let latterFeed;
 
   	     beforeEach(function(done) {
-            priorFeed = $('.header-title').text();
-             loadFeed(1, function(){
-               latterFeed = $('.header-title').text();
-               done();
-             });
+           loadFeed(0, function() {
+            priorFeed = $('.feed').html();
+               loadFeed(1, function(){
+                 latterFeed = $('.feed').html();
+                 done();
+               });
+            });
          });
 
          it('changes title and content on load', function(done) {
