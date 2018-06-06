@@ -113,31 +113,23 @@ $(function() {
     * Remember, loadFeed() is asynchronous.
     */
 
-    let title = [];
-    for (var i = 0; i < allFeeds.length; i++) {
-        asyncLoad(i);
-        let j = i + 1;
-    }
-
-    function asyncLoad(i) {
       describe('feed', function() {
         let priorFeed;
         let latterFeed;
 
   	     beforeEach(function(done) {
-           loadFeed(i, function(){
-             priorFeed = $('.header-title').text();
-             loadFeed(j, function(){
+            priorFeed = $('.header-title').text();
+             loadFeed(1, function(){
                latterFeed = $('.header-title').text();
+               done();
              });
-           });
          });
 
-         it('changes title and content on load', function() {
-           expect(priorFeed).not.toBe(latterFeed);
+         it('changes title and content on load', function(done) {
+             expect(latterFeed).not.toBe(priorFeed);
+             done();
          });
        });
-     }
 
    });
 
