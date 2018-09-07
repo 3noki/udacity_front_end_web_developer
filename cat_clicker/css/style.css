@@ -1,1 +1,11 @@
-style
+.menu {
+  visibility: hidden;
+}
+
+.menu.visible {
+  visibility: visible;
+}
+
+ul {
+  list-style-type: none;
+}

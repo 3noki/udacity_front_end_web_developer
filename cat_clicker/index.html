@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Cat Clicker</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+
 	<ul class="cat_list"></ul>
   <div class="cat_picture">
           <h2 class="cat_name"></h2>
           <div class="clicks"></div>
           <img class="cat_image" src="" alt="cat picture">
   </div>
+
+  <button class="admin_button">Admin Console</button>
+  <div class="menu">
+    <form class="admin_form">
+      <ul>
+        <li><input class="admin_name" type="text"></li>
+        <br/>
+        <li><input class="admin_url" type="text"></li>
+        <br/>
+        <li><input class="admin_clicks" type="number"></li>
+      </ul>
+    </form>
+    <button class="admin_submit">Submit</button>
+    <button class="admin_cancel">Cancel</button>
+  </div>
+
   <script src="js/app.js"></script>
 </body>
 </html>

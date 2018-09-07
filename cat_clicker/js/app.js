@@ -38,8 +38,9 @@
 
     init: function() {
       model.current_cat = model.cats[0];
-      view.init();
-      list.init();
+      cat_view.init();
+      list_of_cats.init();
+      //admin_console.init();
     },
 
     returnCurrentCat: function() {
@@ -52,16 +53,25 @@
 
     setCurrentCat: function(cat) {
       model.current_cat = cat;
+      cat_view.render();
     },
 
     incrementClicks: function() {
       model.current_cat.clickCount++;
-      view.render();
+      cat_view.render();
+    },
+
+    updateCat: function(updatedCat) {
+      model.currentCat.name = updatedCat.catname;
+      model.currentCat.image_src = updatedCat.catimage;
+      model.currentCat.clickCount = updatedCat.catclicks;
+      cat_view.render();
+      list_of_cats.render();
     }
 
   }
 
-  var view = {
+  var cat_view = {
 
     init: function() {
       //this.catpicture = document.querySelector('.cat_picture');
@@ -73,6 +83,32 @@
         octopus.incrementClicks();
       })
 
+      this.adminname = document.querySelector('.admin_name');
+      this.adminimage = document.querySelector('.admin_url');
+      this.adminclicks = document.querySelector('.admin_clicks');
+
+      document.querySelector('.admin_button').addEventListener('click', function() {
+          document.querySelector('.menu').classList.toggle('visible');
+      }, false);
+
+      document.querySelector('.admin_cancel').addEventListener('click', function() {
+          document.querySelector('.menu').classList.toggle('visible');
+      }, false);
+
+      document.querySelector('.admin_submit').addEventListener('click', function() {
+          var adminname = document.querySelector('.admin_name');
+          var adminimage = document.querySelector('.admin_url');
+          var adminclicks = document.querySelector('.admin_clicks');
+          var updatedCat = {
+            catname: adminname.value,
+            caturl: adminimage.value,
+            catclicks: adminclicks.value
+          };
+          octopus.updateCat(updatedCat);
+          document.querySelector('.menu').classList.toggle('visible');
+          //cat_view.render();
+      }, false);
+
       this.render();
     },
 
@@ -81,10 +117,14 @@
       this.catclicks.textContent = currentCat.clickCount;
       this.catname.textContent = currentCat.name;
       this.catimage.src = currentCat.image_src;
+
+      this.adminname.value = currentCat.name;
+      this.adminimage.value = currentCat.image_src;
+      this.adminclicks.value = currentCat.clickCount;
     }
   }
 
-  var list = {
+  var list_of_cats = {
 
       init: function() {
         this.catlist = document.querySelector('.cat_list');
@@ -97,20 +137,18 @@
         let i;
         let cats = octopus.returnCats();
         this.catlist.innerHtml = '';
-        for (i = 0; i < cats.length; i++) {
-          cat = cats[i];
-          element = document.createElement('li');
-          element.textContent = cat.name;
-          element.addEventListener('click', (function(theCat) {
-            return function() {
-                octopus.setCurrentCat(theCat);
-                view.render();
-            }
-          })(cat));
-          this.catlist.appendChild(element);
-
-        }
-
+          for (i = 0; i < cats.length; i++) {
+            cat = cats[i];
+            element = document.createElement('li');
+            element.textContent = cat.name;
+            element.addEventListener('click', (function(cat) {
+              return function() {
+                  octopus.setCurrentCat(cat);
+                  cat_view.render();
+              }
+            })(cat),false);
+            this.catlist.appendChild(element);
+          }
       }
 
   }
