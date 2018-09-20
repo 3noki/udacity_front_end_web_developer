@@ -13,7 +13,7 @@ Projects completed as part of the Udacity Front End Web Developer course, feel f
 
 [project_3_frogger_style_arcade_game](https://3noki.github.io/udacity_front_end_web_developer/project_3_frogger_style_arcade_game/index.html)
 
-[project_4_feedreader](https://3noki.github.io/udacity_front_end_web_developer/project_4_feedreader/index.html)
+[project_4_feedreader](http://the-black-mink.surge.sh/)
 
 [project_5_react_bookshelf_app](https://github.com/3noki/project_5_react_bookshelf_app)
 
