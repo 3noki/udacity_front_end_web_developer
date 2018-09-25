@@ -21,8 +21,9 @@ Projects completed as part of the Udacity Front End Web Developer course, feel f
 
 
 ## Certificate
-[certificate](https://graduation.udacity.com/confirm/YRDWQLZH)
+[Link to Udacity certificate](https://graduation.udacity.com/confirm/YRDWQLZH)
 
+![certificate](https://s3-us-west-2.amazonaws.com/udacity-printer/production/certificates/0d7609fb-2322-4586-bdcf-b55e3596a3cf.svg)
 
 
 
